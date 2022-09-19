@@ -6,7 +6,7 @@ class UsersController {
   async create( request, response ) {
     const { name, email, password } = request.body
 
-    const userExist = await knex("users").wherE({email}).first()
+    const userExist = await knex("users").where({email}).first()
 
     if(userExist) {
       throw new AppError("email já existente")
@@ -26,7 +26,6 @@ class UsersController {
 
     return response.status(201).json()
   }
-  
   async update( request, response ) {
     const { name, email, password, old_password } = request.body
 
@@ -82,11 +81,9 @@ class UsersController {
       updated_at
     })
 
-    return response.json();
+    return response.json()
 
   }
-
-
 }
 
 module.exports = UsersController
